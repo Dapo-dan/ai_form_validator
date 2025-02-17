@@ -32,6 +32,19 @@ class _AIFormFieldState extends State<AIFormField> {
     });
   }
 
+  TextInputType _getKeyboardType() {
+    switch (widget.fieldType) {
+      case "email":
+        return TextInputType.emailAddress;
+      case "phone":
+        return TextInputType.phone;
+      case "address":
+        return TextInputType.streetAddress;
+      default:
+        return TextInputType.text;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,6 +54,7 @@ class _AIFormFieldState extends State<AIFormField> {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         TextField(
           controller: widget.controller,
+          keyboardType: _getKeyboardType(),
           decoration: InputDecoration(
             border: OutlineInputBorder(),
             errorText: errorMessage,

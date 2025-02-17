@@ -17,7 +17,7 @@ void main() {
 
     test('Local validation should return null for valid email', () async {
       when(mockValidator.validateInput(
-              fieldType: 'email', input: 'testexample.com'))
+              fieldType: 'email', input: 'test@example.com'))
           .thenAnswer((_) async => null);
 
       final result = await mockValidator.validateInput(

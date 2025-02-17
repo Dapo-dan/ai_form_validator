@@ -1,39 +1,108 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+### **📂 `README.md`**
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+````md
+# AI Form Validator 🧠 ✅
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+An AI-powered form validator for Flutter. Supports **email, phone numbers, addresses**, and more using **local validation + AI-powered suggestions**.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## 📦 Installation
 
-## Features
+Add the package to your `pubspec.yaml`:
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+```yaml
+dependencies:
+  ai_form_validator: ^1.0.0
+```
+````
 
-## Getting started
+Run:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```sh
+flutter pub get
 ```
 
-## Additional information
+## 🚀 **Usage**
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+### **1️⃣ Initialize the Validator**
+
+```dart
+final AIFormValidator validator = AIFormValidator(apiKey: "YOUR_OPENAI_API_KEY");
+```
+
+### **2️⃣ Use AIFormField in Your App**
+
+```dart
+AIFormField(
+  label: "Email",
+  fieldType: "email",
+  validator: validator,
+  controller: TextEditingController(),
+);
+```
+
+## 🎯 **Features**
+
+✔️ Supports **email, phone numbers, and addresses**.  
+✔️ Provides **real-time AI-based validation**.  
+✔️ Uses **flutter_secure_storage** to store API keys securely.  
+✔️ **Customizable** and **easy to integrate**.
+
+## 🔒 **Secure Your API Key**
+
+To keep your API key safe, store it securely:
+
+```dart
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+const storage = FlutterSecureStorage();
+
+await storage.write(key: 'openai_api_key', value: "YOUR_SECRET_API_KEY");
+
+String? apiKey = await storage.read(key: 'openai_api_key');
+```
+
+## 🎉 **Example App**
+
+Check out a complete example in `example/main.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:ai_form_validator/ai_form_validator.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  final AIFormValidator validator = AIFormValidator(apiKey: "YOUR_OPENAI_API_KEY");
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: AIFormField(
+            label: "Phone Number",
+            fieldType: "phone",
+            validator: validator,
+            controller: TextEditingController(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+## 🛠 **Upcoming Features**
+
+- ✅ More AI-based validation types.
+- ✅ Auto-correction of invalid inputs.
+- ✅ Multi-language support.
+
+**📢 Contributions are welcome!**  
+Star ⭐ the repo and feel free to submit PRs!
+
+## 📝 **License**
+
+MIT License. Free to use and modify.
